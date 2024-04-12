@@ -560,6 +560,29 @@ func (api *KrakenAPI) WithdrawInfo(asset string, key string, amount *big.Float) 
 	return resp.(*WithdrawInfoResponse), nil
 }
 
+func (api *KrakenAPI) OpenPositions(args map[string]string) (*OpenPositionsResponse, error) {
+	params := url.Values{}
+	if value, ok := args["txid"]; ok {
+		params.Add("txid", value)
+	}
+	if value, ok := args["docalcs"]; ok {
+		params.Add("docalcs", value)
+	}
+	if value, ok := args["consolidation"]; ok {
+		params.Add("consolidation", value)
+	}
+	if value, ok := args["market"]; ok {
+		params.Add("market", value)
+	}
+
+	resp, err := api.queryPrivate("OpenPositions", params, &OpenPositionsResponse{})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return resp.(*OpenPositionsResponse), nil
+}
 // Query sends a query to Kraken api for given method and parameters
 func (api *KrakenAPI) Query(method string, data map[string]string) (interface{}, error) {
 	values := url.Values{}

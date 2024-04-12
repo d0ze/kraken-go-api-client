@@ -31,8 +31,8 @@ const (
 	GNOEUR   = "GNOEUR"
 	GNOUSD   = "GNOUSD"
 	GNOXBT   = "GNOXBT"
-	LINKUSD   = "LINKUSD"
-	LINKXBT   = "LINKXBT"
+	LINKUSD  = "LINKUSD"
+	LINKXBT  = "LINKXBT"
 	QTUMCAD  = "QTUMCAD"
 	QTUMETH  = "QTUMETH"
 	QTUMEUR  = "QTUMEUR"
@@ -770,3 +770,26 @@ type OHLCResponse struct {
 	OHLC []*OHLC `json:"OHLC"`
 	Last float64 `json:"last"`
 }
+
+// OpenPosition represent an open position
+type OpenPosition struct {
+	TransactionID      string  `json:"-"`
+	OrderTransactionID string  `json:"ordertxid"`
+	Pair               string  `json:"pair"`
+	TradeTime          float64 `json:"time"`
+	PositionType       string  `json:"type"`
+	OrderType          string  `json:"ordertype"`
+	Cost               float64 `json:"cost,string"`
+	Fee                float64 `json:"fee,string"`
+	Volume             float64 `json:"vol,string"`
+	VolumeClosed       float64 `json:"vol_closed,string"`
+	Margin             float64 `json:"margin,string"`
+	Value              float64 `json:"value,string"`
+	Net                float64 `json:"net,string"`
+	Misc               string  `json:"misc"`
+	OrderFlags         string  `json:"oflags"`
+	Status             string  `json:"posstatus"`
+}
+
+// OpenPositionsResponse represents the OpenPositions query response
+type OpenPositionsResponse map[string]OpenPosition
