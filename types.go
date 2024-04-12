@@ -226,6 +226,8 @@ type AssetPairInfo struct {
 	MarginStop int `json:"margin_stop"`
 	// Order minimum
 	OrderMin string `json:"ordermin"`
+	// Cost minimum
+	CostMin string `json:"costmin"`
 }
 
 // AssetsResponse includes asset informations
