@@ -787,7 +787,7 @@ type OpenPosition struct {
 	VolumeClosed       float64 `json:"vol_closed,string"`
 	Margin             float64 `json:"margin,string"`
 	Value              float64 `json:"value,string"`
-	Net                float64 `json:"net,string"`
+	Net                string  `json:"net,string"`
 	Misc               string  `json:"misc"`
 	OrderFlags         string  `json:"oflags"`
 	Status             string  `json:"posstatus"`
