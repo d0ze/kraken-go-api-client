@@ -787,7 +787,7 @@ type OpenPosition struct {
 	VolumeClosed       float64 `json:"vol_closed,string"`
 	Margin             float64 `json:"margin,string"`
 	Value              float64 `json:"value,string"`
-	Net                string  `json:"net,string"`
+	Net                Float64  `json:"net,string"`
 	Misc               string  `json:"misc"`
 	OrderFlags         string  `json:"oflags"`
 	Status             string  `json:"posstatus"`
@@ -795,3 +795,14 @@ type OpenPosition struct {
 
 // OpenPositionsResponse represents the OpenPositions query response
 type OpenPositionsResponse map[string]OpenPosition
+
+type Float64 float64
+
+func (ff *Float64) UnmarshalJSON(data []byte) error {
+	f, err := strconv.ParseFloat(string(data), 64)
+	if err != nil {
+		return err
+	}
+	*ff = Float64(f)
+	return nil
+}
